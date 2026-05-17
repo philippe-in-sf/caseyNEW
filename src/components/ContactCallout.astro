@@ -1,0 +1,22 @@
+---
+import { site } from '../data/site';
+
+interface Props {
+  title?: string;
+  body?: string;
+}
+
+const {
+  title = 'For recital inquiries and professional introductions',
+  body = 'Reach out for concert, service, collaboration, or church music inquiries.',
+} = Astro.props;
+---
+
+<section class="contact-band">
+  <div>
+    <p class="eyebrow">Contact</p>
+    <h2>{title}</h2>
+    <p>{body}</p>
+  </div>
+  <a class="button light" href={`mailto:${site.contactEmail}`}>{site.contactEmail}</a>
+</section>

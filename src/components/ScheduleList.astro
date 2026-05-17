@@ -1,0 +1,28 @@
+---
+import type { MusicEvent } from '../data/musicSchedule';
+import { formatMusicDate } from '../data/musicSchedule';
+
+interface Props {
+  events: MusicEvent[];
+  compact?: boolean;
+}
+
+const { events, compact = false } = Astro.props;
+---
+
+<div class:list={['schedule-list', { compact }]}>
+  {events.map((item) => (
+    <article class="schedule-item">
+      <div class="schedule-date">
+        <span>{formatMusicDate(item.date)}</span>
+        <strong>{item.time}</strong>
+      </div>
+      <div>
+        <p class="eyebrow">{item.series}</p>
+        <h3>{item.title}</h3>
+        <p>{item.description}</p>
+        <p class="meta">{item.venue} · {item.location}</p>
+      </div>
+    </article>
+  ))}
+</div>

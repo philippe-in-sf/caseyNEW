@@ -1,0 +1,18 @@
+---
+import { evensongRecitals, specialEvents, tuesdaysAtTrinity } from '../data/musicSchedule';
+---
+
+<section class="season-overview" aria-label="Service music and concert schedule summary">
+  <article>
+    <span>{tuesdaysAtTrinity.length}</span>
+    <p>Tuesdays at Trinity noonday concerts</p>
+  </article>
+  <article>
+    <span>{evensongRecitals.length}</span>
+    <p>Recitals preceding Evensong</p>
+  </article>
+  <article>
+    <span>{specialEvents.length}</span>
+    <p>Special concerts and choral services</p>
+  </article>
+</section>
