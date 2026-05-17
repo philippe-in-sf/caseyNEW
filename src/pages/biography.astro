@@ -1,0 +1,20 @@
+---
+import { getEntry } from 'astro:content';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import ContactCallout from '../components/ContactCallout.astro';
+import PageHeader from '../components/PageHeader.astro';
+
+const page = await getEntry('pages', 'biography');
+if (!page) {
+  throw new Error('Missing biography page content');
+}
+const { Content } = await page.render();
+---
+
+<BaseLayout title={page.data.title} description={page.data.description}>
+  <PageHeader eyebrow={page.data.eyebrow} title={page.data.title} description={page.data.description} />
+  <section class="section prose">
+    <Content />
+  </section>
+  <ContactCallout />
+</BaseLayout>
