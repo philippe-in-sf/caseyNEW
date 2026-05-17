@@ -78,6 +78,11 @@ export const specialEvents: MusicEvent[] = [
   event('2026-04-24', '7:00 p.m.', 'Special Event', 'University of Tulsa Choirs', 'Dr. Kim Childs, director'),
 ];
 
+export const sundayServiceMusic: MusicEvent[] = [
+  ...evensongRecitals,
+  ...specialEvents.filter((item) => isSunday(item.date)),
+].sort((a, b) => a.date.localeCompare(b.date) || a.time.localeCompare(b.time));
+
 export const seasonEvents = [
   ...tuesdaysAtTrinity,
   ...evensongRecitals,
@@ -115,4 +120,8 @@ function event(
     description,
     featured,
   };
+}
+
+function isSunday(date: string) {
+  return new Date(`${date}T12:00:00`).getDay() === 0;
 }
