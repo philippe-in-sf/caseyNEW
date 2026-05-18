@@ -1,0 +1,30 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import PageHeader from '../components/PageHeader.astro';
+import ScheduleList from '../components/ScheduleList.astro';
+import { evensongRecitals, specialEvents, sundayServiceMusic, tuesdaysAtTrinity } from '../data/musicSchedule';
+---
+
+<BaseLayout title="Events" description="The 2025-2026 music schedule for Casey Cantwell and Trinity Episcopal Church.">
+  <PageHeader eyebrow="2025-2026 Season" title="Events" description="Noonday concerts, recitals preceding Evensong, choral services, and special concerts from the Trinity music brochure." />
+  <section class="section">
+    <p class="eyebrow">Tuesdays at Trinity</p>
+    <h2>Noonday concerts</h2>
+    <ScheduleList events={tuesdaysAtTrinity} />
+  </section>
+  <section class="section">
+    <p class="eyebrow">Sunday Schedule</p>
+    <h2>All Sunday service music listings</h2>
+    <ScheduleList events={sundayServiceMusic} showServiceType />
+  </section>
+  <section class="section">
+    <p class="eyebrow">Service Music</p>
+    <h2>Recitals preceding Evensong</h2>
+    <ScheduleList events={evensongRecitals} />
+  </section>
+  <section class="section">
+    <p class="eyebrow">Special Events</p>
+    <h2>Choral services and concerts</h2>
+    <ScheduleList events={specialEvents} />
+  </section>
+</BaseLayout>

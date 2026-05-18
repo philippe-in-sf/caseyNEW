@@ -1,0 +1,39 @@
+---
+import type { MusicEvent } from '../data/musicSchedule';
+import { formatMusicDate } from '../data/musicSchedule';
+
+interface Props {
+  events: MusicEvent[];
+  compact?: boolean;
+  showServiceType?: boolean;
+}
+
+const { events, compact = false, showServiceType = false } = Astro.props;
+
+function getServiceType(item: MusicEvent) {
+  if (item.series === 'Evensong Recital') {
+    return 'Evensong Recital';
+  }
+  if (/lessons and carols/i.test(item.description)) {
+    return 'Lessons & Carols';
+  }
+  return 'Concert';
+}
+---
+
+<div class:list={['schedule-list', { compact }]}>
+  {events.map((item) => (
+    <article class="schedule-item">
+      <div class="schedule-date">
+        <span>{formatMusicDate(item.date)}</span>
+        <strong>{item.time}</strong>
+      </div>
+      <div>
+        <p class="eyebrow">{item.series}</p>
+        <h3>{item.title}</h3>
+        <p>{item.description}</p>
+        {showServiceType && <p class="meta">Service type: {getServiceType(item)}</p>}
+      </div>
+    </article>
+  ))}
+</div>

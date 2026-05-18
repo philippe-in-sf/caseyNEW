@@ -1,0 +1,46 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import PageHeader from '../components/PageHeader.astro';
+import { featuredVideo, organGallery } from '../data/mediaAssets';
+---
+
+<BaseLayout title="Media" description="Selected media, recordings, and features for Casey Cantwell.">
+  <PageHeader eyebrow="Media" title="Media" description="Performance video and image archive for Casey Cantwell and Trinity Episcopal Church." />
+  <section class="section">
+    <p class="eyebrow">Featured Video</p>
+    <h2>{featuredVideo.title}</h2>
+    <div class="video-frame">
+      <iframe
+        width="560"
+        height="315"
+        src={`https://www.youtube.com/embed/${featuredVideo.youtubeId}?si=RiyHZmLur6WMH_Wb`}
+        title="YouTube video player"
+        loading="lazy"
+        frameborder="0"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+        referrerpolicy="strict-origin-when-cross-origin"
+        allowfullscreen
+      ></iframe>
+    </div>
+    <div class="button-row">
+      <a class="button" href={featuredVideo.sourceUrl} target="_blank" rel="noreferrer">Watch on YouTube</a>
+    </div>
+    <p class="meta">If the embedded player is blocked by YouTube settings, use the direct watch link above.</p>
+  </section>
+
+  <section class="section">
+    <p class="eyebrow">Pipe Organ Database</p>
+    <h2>Trinity instrument image gallery</h2>
+    <div class="organ-gallery">
+      {organGallery.map((image) => (
+        <figure class="organ-gallery-item">
+          <img src={image.imageUrl} alt={image.title} loading="lazy" />
+          <figcaption>
+            <strong>{image.title}</strong>
+            <span class="meta">{image.source}</span>
+          </figcaption>
+        </figure>
+      ))}
+    </div>
+  </section>
+</BaseLayout>

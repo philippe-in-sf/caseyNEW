@@ -1,0 +1,59 @@
+---
+import { getEntry } from 'astro:content';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import ContactCallout from '../components/ContactCallout.astro';
+import ScheduleList from '../components/ScheduleList.astro';
+import SeasonOverview from '../components/SeasonOverview.astro';
+import { site } from '../data/site';
+import { featuredEvents, seasonEvents } from '../data/musicSchedule';
+
+const biography = await getEntry('pages', 'biography');
+const nextEvents = seasonEvents.filter((item) => item.date >= '2026-05-17').slice(0, 4);
+---
+
+<BaseLayout>
+  <section class="hero">
+    <div class="hero-inner">
+      <div>
+        <h1>{site.name}</h1>
+        <p class="lede">Professional church musician, concert organist, master improviser, and Director of Music and Choirmaster at Trinity Episcopal Church in Tulsa.</p>
+        <div class="button-row">
+          <a class="button light" href="/events/">View events</a>
+          <a class="button light" href="/contact/">Contact</a>
+        </div>
+      </div>
+      <aside class="hero-card">
+        <p class="eyebrow">Trinity Episcopal Church</p>
+        <h2>Music shaped by liturgy, architecture, and the instrument.</h2>
+      </aside>
+    </div>
+  </section>
+
+  <section class="section split">
+    <div>
+      <p class="eyebrow">Biography</p>
+      <h2>Organist, choirmaster, and improviser.</h2>
+    </div>
+    <div class="prose">
+      <p>{biography?.body ?? 'Casey Cantwell is a professional church musician, organist, and improviser based in Tulsa, Oklahoma.'}</p>
+      <a class="button" href="/biography/">Read biography</a>
+    </div>
+  </section>
+
+  <section class="section">
+    <p class="eyebrow">2025-2026 Season</p>
+    <h2>Concerts and service music</h2>
+    <SeasonOverview />
+  </section>
+
+  <section class="section">
+    <p class="eyebrow">Upcoming and Featured</p>
+    <h2>Events</h2>
+    <ScheduleList events={nextEvents.length > 0 ? nextEvents : featuredEvents} compact />
+    <div class="button-row">
+      <a class="button" href="/events/">See full schedule</a>
+    </div>
+  </section>
+
+  <ContactCallout />
+</BaseLayout>
