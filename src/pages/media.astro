@@ -11,17 +11,21 @@ import { featuredVideo, organGallery } from '../data/mediaAssets';
     <h2>{featuredVideo.title}</h2>
     <div class="video-frame">
       <iframe
-        src={`https://www.youtube.com/embed/${featuredVideo.youtubeId}`}
-        title={featuredVideo.title}
+        width="560"
+        height="315"
+        src={`https://www.youtube.com/embed/${featuredVideo.youtubeId}?si=RiyHZmLur6WMH_Wb`}
+        title="YouTube video player"
         loading="lazy"
+        frameborder="0"
         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+        referrerpolicy="strict-origin-when-cross-origin"
         allowfullscreen
       ></iframe>
     </div>
-    <p class="meta">
-      Source:
-      <a href={featuredVideo.sourceUrl} target="_blank" rel="noreferrer">YouTube</a>
-    </p>
+    <div class="button-row">
+      <a class="button" href={featuredVideo.sourceUrl} target="_blank" rel="noreferrer">Watch on YouTube</a>
+    </div>
+    <p class="meta">If the embedded player is blocked by YouTube settings, use the direct watch link above.</p>
   </section>
 
   <section class="section">
