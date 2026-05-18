@@ -241,6 +241,45 @@ h3 {
   padding-top: 20px;
 }
 
+.video-frame {
+  border: 1px solid var(--line);
+  background: #111;
+  aspect-ratio: 16 / 9;
+  width: 100%;
+  max-width: 980px;
+}
+
+.video-frame iframe {
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+
+.organ-gallery {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 18px;
+}
+
+.organ-gallery-item {
+  margin: 0;
+  border-top: 3px solid var(--gold);
+  padding-top: 10px;
+}
+
+.organ-gallery-item img {
+  width: 100%;
+  display: block;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+}
+
+.organ-gallery-item figcaption {
+  margin-top: 8px;
+  display: grid;
+  gap: 4px;
+}
+
 @media (max-width: 780px) {
   .site-header,
   .site-footer,
@@ -252,7 +291,8 @@ h3 {
   .hero-inner,
   .split,
   .season-overview,
-  .media-grid {
+  .media-grid,
+  .organ-gallery {
     grid-template-columns: 1fr;
   }
 
