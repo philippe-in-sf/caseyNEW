@@ -2,5 +2,5 @@
 
 ## Pending First Deployment
 
-- Current project version: `1.0.0`
+- Current project version: `1.1.0`
 - Deployment history will be recorded here before publishing `caseycantwell.com`.
