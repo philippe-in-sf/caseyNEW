@@ -10,6 +10,19 @@ interface Props {
 const { title = site.title, description = site.description } = Astro.props;
 const pageTitle = title === site.title ? title : `${title} | ${site.name}`;
 const canonicalUrl = new URL(Astro.url.pathname, site.url).toString();
+const baseUrl = import.meta.env.BASE_URL;
+const trimmedBase = baseUrl.replace(/^\/+|\/+$/g, '');
+const basePrefix = trimmedBase.length > 0 ? `/${trimmedBase}` : '';
+
+function toInternalHref(path: string) {
+  if (path === '/') {
+    return basePrefix ? `${basePrefix}/` : '/';
+  }
+  if (!path.startsWith('/')) {
+    return path;
+  }
+  return `${basePrefix}/${path.replace(/^\/+/, '')}`;
+}
 ---
 
 <!doctype html>
@@ -26,9 +39,9 @@ const canonicalUrl = new URL(Astro.url.pathname, site.url).toString();
   </head>
   <body>
     <header class="site-header">
-      <a class="brand" href="/" aria-label={`${site.name} home`}>{site.name}</a>
+      <a class="brand" href={toInternalHref('/')} aria-label={`${site.name} home`}>{site.name}</a>
       <nav class="nav" aria-label="Primary navigation">
-        {navigation.map((item) => <a href={item.href}>{item.label}</a>)}
+        {navigation.map((item) => <a href={toInternalHref(item.href)}>{item.label}</a>)}
       </nav>
     </header>
     <main>

@@ -9,6 +9,16 @@ import { featuredEvents, seasonEvents } from '../data/musicSchedule';
 
 const biography = await getEntry('pages', 'biography');
 const nextEvents = seasonEvents.filter((item) => item.date >= '2026-05-17').slice(0, 4);
+const baseUrl = import.meta.env.BASE_URL;
+const trimmedBase = baseUrl.replace(/^\/+|\/+$/g, '');
+const basePrefix = trimmedBase.length > 0 ? `/${trimmedBase}` : '';
+
+function toInternalHref(path: string) {
+  if (path === '/') {
+    return basePrefix ? `${basePrefix}/` : '/';
+  }
+  return `${basePrefix}/${path.replace(/^\/+/, '')}`;
+}
 ---
 
 <BaseLayout>
@@ -18,8 +28,8 @@ const nextEvents = seasonEvents.filter((item) => item.date >= '2026-05-17').slic
         <h1>{site.name}</h1>
         <p class="lede">Professional church musician, concert organist, master improviser, and Director of Music and Choirmaster at Trinity Episcopal Church in Tulsa.</p>
         <div class="button-row">
-          <a class="button light" href="/events/">View events</a>
-          <a class="button light" href="/contact/">Contact</a>
+          <a class="button light" href={toInternalHref('/events/')}>View events</a>
+          <a class="button light" href={toInternalHref('/contact/')}>Contact</a>
         </div>
       </div>
       <aside class="hero-card">
@@ -36,7 +46,7 @@ const nextEvents = seasonEvents.filter((item) => item.date >= '2026-05-17').slic
     </div>
     <div class="prose">
       <p>{biography?.body ?? 'Casey Cantwell is a professional church musician, organist, and improviser based in Tulsa, Oklahoma.'}</p>
-      <a class="button" href="/biography/">Read biography</a>
+      <a class="button" href={toInternalHref('/biography/')}>Read biography</a>
     </div>
   </section>
 
@@ -51,7 +61,7 @@ const nextEvents = seasonEvents.filter((item) => item.date >= '2026-05-17').slic
     <h2>Events</h2>
     <ScheduleList events={nextEvents.length > 0 ? nextEvents : featuredEvents} compact />
     <div class="button-row">
-      <a class="button" href="/events/">See full schedule</a>
+      <a class="button" href={toInternalHref('/events/')}>See full schedule</a>
     </div>
   </section>
 
