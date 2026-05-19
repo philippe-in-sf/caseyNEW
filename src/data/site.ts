@@ -6,7 +6,7 @@ export const site = {
   description:
     'Professional church musician, concert organist, improviser, and Director of Music and Choirmaster at Trinity Episcopal Church in Tulsa, Oklahoma.',
   location: 'Tulsa, Oklahoma',
-  contactEmail: 'contact@caseycantwell.com',
+  contactEmail: 'casey@caseycantwell.com',
   trinityUrl: 'https://trinitytulsa.org',
 };
 
