@@ -5,7 +5,7 @@ import ContactCallout from '../components/ContactCallout.astro';
 import PageHeader from '../components/PageHeader.astro';
 import ScheduleList from '../components/ScheduleList.astro';
 import SeasonOverview from '../components/SeasonOverview.astro';
-import { evensongRecitals, specialEvents, sundayServiceMusic, tuesdaysAtTrinity } from '../data/musicSchedule';
+import { evensongRecitals, specialEvents, tuesdaysAtTrinity } from '../data/musicSchedule';
 
 const page = await getEntry('pages', 'trinity-music');
 if (!page) {
@@ -24,11 +24,6 @@ const { Content } = await page.render();
     <div class="prose">
       <Content />
     </div>
-  </section>
-  <section class="section">
-    <p class="eyebrow">Sunday Schedule</p>
-    <h2>All Sunday service music listings</h2>
-    <ScheduleList events={sundayServiceMusic} showServiceType />
   </section>
   <section class="section">
     <p class="eyebrow">Service Music</p>
